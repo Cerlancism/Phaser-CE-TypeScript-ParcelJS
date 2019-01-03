@@ -1,7 +1,6 @@
 import * as UI from './ui/*.png'
 import * as Game from './game/*.png'
 
-
 type UIKeyStore =
     | 'preloader_bar'
 

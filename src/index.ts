@@ -4,7 +4,6 @@ import { HoistGlobalScopesAsync } from './global'
 (async () =>
 {
     await HoistGlobalScopesAsync()
-
     if (!window.GameInstance)
     {
         const gameStarter = await import('/game')

@@ -1,16 +1,23 @@
 {
   "name": "phaser-ce-parceljs",
   "version": "1.0.0",
-  "description": "",
-  "main": "dev/index.html",
+  "description": "Phaser CE boiler plate with typescript, babel and parcel bundler.",
+  "main": "src/index.html",
   "scripts": {
     "start": "tsc & parcel serve src/index.html --out-dir dev/",
-    "build": "tsc & parcel build src/index.html --out-dir .build/ --public-url ./",
-    "deploy": "tsc & parcel build src/index.html --out-dir deploy/ --public-url ./ --no-source-maps"
+    "build": "tsc & parcel build src/index.html --out-dir build/ --public-url ./ --no-minify",
+    "deploy": "tsc & parcel build src/index.html --out-dir .deploy/ --public-url ./ --no-source-maps"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "phaser",
+    "phaser-ce",
+    "phaser2",
+    "parceljs",
+    "typescript",
+    "babel"
+  ],
+  "author": "Cerlancism",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
