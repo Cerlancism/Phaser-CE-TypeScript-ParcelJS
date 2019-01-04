@@ -14,7 +14,7 @@
     - Minification for build output
     - Source mapping
 - Supports modern ECMA syntax as well as typings/intelliSense from [TypeScript](http://www.typescriptlang.org/).
-- Backwards compatible up to Internet Explorer 9 with [Babel](https://babeljs.io/) transformations and polyfills.
+- Browser compatibility from Internet Explorer 9 with [Babel](https://babeljs.io/) transformations and polyfills.
 - The build output playable offline.
 
 ## Installation
