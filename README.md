@@ -26,11 +26,11 @@ Clone this repository.
 
 Open this folder in VS code and go to `Terminal -> New Terminal`
 
-To develop: `npm start`  (creates `dev` folder)
+To develop: `npm start` (creates `dev` folder)
 
-To build(minify and offline play): `npm run build` (creates `build` folder)
+To build (minify and offline play): `npm run build` (creates `build` folder)
 
-To deploy(build with no source map): `npm run deploy` (creates `.deploy` folder)
+To deploy (build with no source map): `npm run deploy` (creates `.deploy` folder)
 
 ## Important Note
 Due to the bundling and limitation of mounting of Phaser to window scope, do not use destructuring ES module imports from Phaser, for example
