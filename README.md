@@ -4,6 +4,8 @@
 <img src="https://raw.githubusercontent.com/Cerlancism/Phaser-CE-TypeScript-ParcelJS/master/Banner.png" width="640" alt="Banner" />
 </div>
 
+[Phaser CE](https://github.com/photonstorm/phaser-ce) boilerplate.
+
 ### Try out here
 <https://cerlancism.github.io/Phaser-CE-TypeScript-ParcelJS/build/>
 
