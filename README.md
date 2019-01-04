@@ -34,7 +34,7 @@ Open this folder in Visual Studio code and from menu:
 
 `npm start` To develop (work in `src` folder, creates `dev` folder)
 
-`npm run build` To build (minify and offline play, creates `build` folder)
+`npm run build` To build (minified and playable offline, creates `build` folder)
 
 `npm run deploy` To deploy (build with no source map, creates `.deploy` folder)
 
