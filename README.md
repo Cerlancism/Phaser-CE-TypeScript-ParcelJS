@@ -41,16 +41,22 @@ Due to the bundling and limitation of mounting of Phaser to window scope, do not
 // Do not use ES Modules for Phaser
 import { Game, IGameConfig } from 'phaser-ce'
 // But you can do this for your own modules.
-import { Logger } from '/utilites'
+import { Logger } from '/utilities'
 
 const config: IGameConfig = { /* Configs */ }
 const game = new Game(config)
+
+Logger.log("Game Created")
 ```
 This will cause the build size to bloat as Phaser will be included twice.  
 Do use Phaser as namespace:  
 ``` ts
+import { Logger } from '/utilities'
+
 const config: Phaser.IGameConfig = { /* Configs */ }
 const game = new Phaser.Game(config)
+
+Logger.log("Game Created")
 ```
 
 ## Credits
