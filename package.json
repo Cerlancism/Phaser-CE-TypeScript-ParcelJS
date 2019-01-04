@@ -21,7 +21,6 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
-    "@babel/preset-typescript": "^7.1.0",
     "@types/webpack-env": "^1.13.6",
     "cssnano": "^4.1.8",
     "typescript": "^3.2.2"
