@@ -55,5 +55,5 @@ const game = new Phaser.Game(config)
 
 ## Credits
 - Example game and assets from [Phaser 2 Examples](https://github.com/photonstorm/phaser-examples)
-- [Phaser3 TypeScript Webpack](https://github.com/troyedwardsjr/phaser3-typescript-webpack)
+- [Phaser 3 TypeScript Webpack](https://github.com/troyedwardsjr/phaser3-typescript-webpack)
 - [Phaser 3 with Parcel](https://github.com/samme/phaser-parcel)
