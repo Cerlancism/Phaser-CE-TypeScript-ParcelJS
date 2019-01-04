@@ -20,6 +20,7 @@
 ## Installation
 - Recommended Editor: Visual Studio Code
 - NodeJS
+- ParcelJS `npm install -g parcel-bundler`
 
 ## Set Up
 Clone this repository.
