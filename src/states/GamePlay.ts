@@ -2,6 +2,8 @@ import { GameAssetKeys } from "/assets"
 
 export class GamePlay extends Phaser.State
 {
+    public static key = "GamePlay"
+
     map: Phaser.Tilemap
     layer: Phaser.TilemapLayer
     player: Phaser.Sprite

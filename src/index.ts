@@ -4,7 +4,7 @@ window.PIXI = require('phaser-ce/build/custom/pixi')
 window.p2 = require('phaser-ce/build/custom/p2')
 window.Phaser = require('phaser-ce/build/custom/phaser-split')
 
-const { Boot, Preloader, GamePlay } = require("/states")
+const { Boot, Preloader, GamePlay } = require<{ [keys in any]: { new(): Phaser.State } & { key: string, onCreate: Phaser.Signal } }>("/states")
 
 !(async () =>
 {
@@ -41,8 +41,12 @@ async function startGame()
             document.querySelector<HTMLDivElement>("#content").style.setProperty("visibility", "hidden")
 
             const game = new Phaser.Game(config)
-            game.state.add(Preloader.name, Preloader)
-            game.state.add(GamePlay.name, GamePlay)
+
+            game.state.add(Preloader.key, Preloader)
+            game.state.add(GamePlay.key, GamePlay)
+
+            Boot.onCreate.addOnce(() => game.state.start(Preloader.key))
+            Preloader.onCreate.addOnce(() => game.state.start(GamePlay.key))
 
             resolve(game)
         })

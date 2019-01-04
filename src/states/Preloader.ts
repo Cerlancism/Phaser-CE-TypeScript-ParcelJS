@@ -1,15 +1,17 @@
 import { UIKeys, GameAssetValues, GameAssetKeys } from "/assets"
-import { GamePlay } from "./GamePlay"
 
 export class Preloader extends Phaser.State
 {
+    public static key = "Preloader"
+    public static onCreate = new Phaser.Signal()
+
     preloadBar: Phaser.Sprite
     preloadText: Phaser.Text
 
     init()
     {
         console.log("State", this.key)
-        console.log("KeyValues", GameAssetValues, "Keys", GameAssetKeys)
+        console.log("Asset Key Values", GameAssetValues, "Asset Keys", GameAssetKeys)
     }
 
     preload()
@@ -38,6 +40,6 @@ export class Preloader extends Phaser.State
     create()
     {
         console.log("Load Complete")
-        this.state.start(GamePlay.name)
+        Preloader.onCreate.dispatch()
     }
 }

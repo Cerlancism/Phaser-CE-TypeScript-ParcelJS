@@ -1,8 +1,10 @@
 import { UIKeyValues, UIKeys } from "/assets"
-import { Preloader } from "./Preloader"
 
 export class Boot extends Phaser.State
 {
+    public static key = "Boot"
+    public static onCreate = new Phaser.Signal()
+
     init()
     {
         console.log("State", this.key)
@@ -22,6 +24,6 @@ export class Boot extends Phaser.State
     create()
     {
         this.game.canvas.parentElement.style.removeProperty("visibility")
-        this.state.start(Preloader.name)
+        Boot.onCreate.dispatch()
     }
 }
