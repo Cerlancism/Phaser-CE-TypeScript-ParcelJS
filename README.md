@@ -26,7 +26,7 @@ Clone this repository.
 
 Open this folder in VS code and go to `Terminal -> New Terminal`
 
-To develop: `npm start` (creates `dev` folder)
+To develop: `npm start` (creates `dev` folder, work in `src` folder)
 
 To build (minify and offline play): `npm run build` (creates `build` folder)
 
