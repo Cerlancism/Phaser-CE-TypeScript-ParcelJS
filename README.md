@@ -20,6 +20,7 @@
 ## Installation
 - Recommended Editor: Visual Studio Code
 - NodeJS
+- TypeScript `npm install -g typescript`
 - ParcelJS `npm install -g parcel-bundler`
 
 ## Set Up
