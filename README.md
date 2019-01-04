@@ -8,20 +8,20 @@
 <https://cerlancism.github.io/Phaser-CE-TypeScript-ParcelJS/build/>
 
 ## Features
-- Using Parcel bundler as a seamless and lightweight build tool.  
+- Using [Parcel bundler](https://parceljs.org/) as a seamless and lightweight build tool.  
     - Bulk import assets using glob file patterns.
     - Hot Module Replacement (fast game reload in browser during development)
     - Minification for build output
     - Source mapping
-- Supports modern ECMA syntax as well as typings/intelliSense from TypeScript.
-- Backwards compatible up to Internet Explorer 9 with Babel transformations and polyfills.
+- Supports modern ECMA syntax as well as typings/intelliSense from [TypeScript](http://www.typescriptlang.org/).
+- Backwards compatible up to Internet Explorer 9 with [Babel](https://babeljs.io/) transformations and polyfills.
 - The build output playable offline.
 
 ## Installation
-- Recommended Editor: Visual Studio Code
-- NodeJS
-- `npm install -g typescript` TypeScript
-- `npm install -g parcel-bundler` ParcelJS Bundler
+- Recommended Editor: [Visual Studio Code](https://code.visualstudio.com/)
+- [NodeJS](https://nodejs.org/en/)
+- `npm install -g typescript`
+- `npm install -g parcel-bundler`
 
 ## Set Up
 Clone this repository.
