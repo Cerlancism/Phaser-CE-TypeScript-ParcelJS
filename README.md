@@ -1,7 +1,7 @@
 # Phaser CE TypeScript ParcelJS
 
 <div align="center">
-<img style="border-radius:8px" src="https://raw.githubusercontent.com/Cerlancism/Phaser-CE-TypeScript-ParcelJS/master/Banner.png" width="640" alt="Banner" />
+<img src="https://raw.githubusercontent.com/Cerlancism/Phaser-CE-TypeScript-ParcelJS/master/Banner.png" width="640" alt="Banner" />
 </div>
 
 ### Try out here
@@ -36,9 +36,9 @@ Open this folder in Visual Studio code and from menu:
 `npm run deploy` To deploy (build with no source map, creates `.deploy` folder)
 
 ## Important Note
-Due to the bundling and limitation of mounting of Phaser to window scope, do not use destructuring ES module imports from Phaser, for example
+Due to the bundling and limitation of mounting of Phaser to window scope, do not use destructuring ES module imports from Phaser, for example:  
 ``` ts
-// Don't use ES Modules for Phaser
+// Do not use ES Modules for Phaser
 import { Game, IGameConfig } from 'phaser-ce'
 // But you can do this for your own modules.
 import { Logger } from '/utilites'
@@ -47,7 +47,7 @@ const config: IGameConfig = { /* Configs */ }
 const game = new Game(config)
 ```
 This will cause the build size to bloat as Phaser will be included twice.  
-Do use Phaser as namespace:
+Do use Phaser as namespace:  
 ``` ts
 const config: Phaser.IGameConfig = { /* Configs */ }
 const game = new Phaser.Game(config)
