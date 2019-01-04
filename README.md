@@ -14,14 +14,15 @@
     - Minification for build output
     - Source mapping
 - Supports modern ECMA syntax as well as typings/intelliSense from [TypeScript](http://www.typescriptlang.org/).
-- Browser compatibility from Internet Explorer 9 with [Babel](https://babeljs.io/) transformations and polyfills.
+- Browser compatibility down to Internet Explorer 9 with [Babel](https://babeljs.io/) transformations and polyfills.
 - The build output playable offline.
 
 ## Installation
-- Recommended Editor: [Visual Studio Code](https://code.visualstudio.com/)
+- Recommended editor: [Visual Studio Code](https://code.visualstudio.com/)
 - [NodeJS](https://nodejs.org/en/)
-- `npm install -g typescript`
-- `npm install -g parcel-bundler`
+- In command-line: 
+    - `npm install -g typescript`
+    - `npm install -g parcel-bundler`
 
 ## Set Up
 Clone this repository.
@@ -36,23 +37,25 @@ Open this folder in Visual Studio code and from menu:
 `npm run deploy` To deploy (build with no source map, creates `.deploy` folder)
 
 ## Important Note
-Due to the bundling and limitation of mounting of Phaser to window scope, do not use destructuring ES module imports from Phaser, for example:  
+Due to bundling and limitation of mounting Phaser to window scope, do not import Phaser as destructured ES modules, for example:  
 ``` ts
-// Do not use ES Modules for Phaser
-import { Game, IGameConfig } from 'phaser-ce'
-// But you can do this for your own modules.
+// You can use ES Modules for your own modules.
 import { Logger } from '/utilities'
+// But do not use ES Modules for Phaser.
+import { Game, IGameConfig } from 'phaser-ce'
 
 const config: IGameConfig = { /* Configs */ }
 const game = new Game(config)
 
 Logger.log("Game Created")
 ```
-This will cause the build size to bloat as Phaser will be included twice.  
-Do use Phaser as namespace:  
+This will cause the build size to bloat as Phaser will be included twice.
+To prevent this, use Phaser only as namepace:
+
 ``` ts
 import { Logger } from '/utilities'
 
+// Do use Phaser only as namepace.
 const config: Phaser.IGameConfig = { /* Configs */ }
 const game = new Phaser.Game(config)
 
