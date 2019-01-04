@@ -1,20 +1,58 @@
 import 'babel-polyfill'
-import { HoistGlobalScopesAsync } from './global'
+// Using require for global scope mounting because ES import does not guarantee load order
+window.PIXI = require('phaser-ce/build/custom/pixi')
+window.p2 = require('phaser-ce/build/custom/p2')
+window.Phaser = require('phaser-ce/build/custom/phaser-split')
 
-(async () =>
+const { Boot, Preloader, GamePlay } = require("/states")
+
+!(async () =>
 {
-    await HoistGlobalScopesAsync()
     if (!window.GameInstance)
     {
-        const gameStarter = await import('/game')
-        window.GameInstance = await gameStarter.startGame()
+        window.GameInstance = await startGame()
     }
 })()
 
+async function startGame()
+{
+    return new Promise<Phaser.Game>(resolve =>
+    {
+        Phaser.Device.whenReady((device: Phaser.Device) =>
+        {
+            console.log("Device Ready")
+            const isOffline = location.protocol === "file:"
+
+            const config: Phaser.IGameConfig =
+            {
+                renderer: device.ie || isOffline && device.chrome ? Phaser.CANVAS : Phaser.AUTO, // IE cannot play videos in WebGL. Chrome will emit CORS errors if using WebGL offline.
+                parent: 'content',
+                width: 800,
+                height: 600,
+                alignH: true,
+                alignV: true,
+                antialias: true,
+                resolution: 1,
+                maxPointers: 1,
+                backgroundColor: '#EEEEEE',
+                state: Boot
+            }
+
+            document.querySelector<HTMLDivElement>("#content").style.setProperty("visibility", "hidden")
+
+            const game = new Phaser.Game(config)
+            game.state.add(Preloader.name, Preloader)
+            game.state.add(GamePlay.name, GamePlay)
+
+            resolve(game)
+        })
+    })
+}
+
 if (module.hot)
 {
-    module.hot.dispose(destroyGame);
-    module.hot.accept(() => console.log("[HMR]", "Accept"));
+    module.hot.dispose(destroyGame)
+    module.hot.accept(() => console.log("[HMR]", "Accept"))
 }
 
 function destroyGame()
