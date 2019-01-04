@@ -13,7 +13,7 @@
     - Hot Module Replacement (fast game reload in browser during development)
     - Minification for build
     - Source Mapping
-- Use modern ECMA syntax as well as typings/intelliSense support from TypeScript.
+- Supports modern ECMA syntax as well as typings/intelliSense support from TypeScript.
 - Backwards compatible up to Internet Explorer 9 with Babel transformations and polyfill.
 - Build output is offline playable.
 
