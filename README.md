@@ -8,31 +8,32 @@
 <https://cerlancism.github.io/Phaser-CE-TypeScript-ParcelJS/build/>
 
 ## Features
-- Using Parcel bundler as a seamless and lightweight build system.  
+- Using Parcel bundler as a seamless and lightweight build tool.  
     - Bulk import assets using glob file patterns.
     - Hot Module Replacement (fast game reload in browser during development)
-    - Minification for build
-    - Source Mapping
-- Supports modern ECMA syntax as well as typings/intelliSense support from TypeScript.
-- Backwards compatible up to Internet Explorer 9 with Babel transformations and polyfill.
-- Build output is offline playable.
+    - Minification for build output
+    - Source mapping
+- Supports modern ECMA syntax as well as typings/intelliSense from TypeScript.
+- Backwards compatible up to Internet Explorer 9 with Babel transformations and polyfills.
+- The build output playable offline.
 
 ## Installation
 - Recommended Editor: Visual Studio Code
 - NodeJS
-- TypeScript: `npm install -g typescript`
-- ParcelJS: `npm install -g parcel-bundler`
+- `npm install -g typescript` TypeScript
+- `npm install -g parcel-bundler` ParcelJS Bundler
 
 ## Set Up
 Clone this repository.
 
-Open this folder in VS code and go to `Terminal -> New Terminal`
+Open this folder in Visual Studio code and from menu:  
+`Terminal -> New Terminal`
 
-To develop: `npm start` (creates `dev` folder, work in `src` folder)
+`npm start` To develop (work in `src` folder, creates `dev` folder)
 
-To build (minify and offline play): `npm run build` (creates `build` folder)
+`npm run build` To build (minify and offline play, creates `build` folder)
 
-To deploy (build with no source map): `npm run deploy` (creates `.deploy` folder)
+`npm run deploy` To deploy (build with no source map, creates `.deploy` folder)
 
 ## Important Note
 Due to the bundling and limitation of mounting of Phaser to window scope, do not use destructuring ES module imports from Phaser, for example
