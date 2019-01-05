@@ -23,7 +23,6 @@ export class Boot extends Phaser.State
 
     create()
     {
-        this.game.canvas.parentElement.style.removeProperty("visibility")
         Boot.onCreate.dispatch()
     }
 }

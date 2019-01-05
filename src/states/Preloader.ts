@@ -16,7 +16,7 @@ export class Preloader extends Phaser.State
 
     preload()
     {
-        this.preloadText = this.add.text(this.camera.bounds.centerX, this.camera.height - 100, "Loading.", { fontSize: 16, font: "Courier New", wordWrap: true, wordWrapWidth: 600 })
+        this.preloadText = this.add.text(this.camera.bounds.centerX, this.camera.height - 100, "Loading.", { fontSize: 16, font: "Courier", wordWrap: true, wordWrapWidth: 600 })
         this.preloadText.anchor.set(0.5, 0.5)
 
         this.preloadBar = this.add.sprite(100, this.camera.bounds.centerY, UIKeys.preloader_bar)

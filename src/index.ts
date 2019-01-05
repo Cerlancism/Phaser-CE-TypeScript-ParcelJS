@@ -10,15 +10,15 @@ const { Boot, Preloader, GamePlay } = require<{ [keys in any]: { new(): Phaser.S
 {
     if (!window.GameInstance)
     {
-        window.GameInstance = await startGame()
+        window.GameInstance = await startGameAsync()
     }
 })()
 
-async function startGame()
+async function startGameAsync()
 {
-    return new Promise<Phaser.Game>(resolve =>
-    {
-        Phaser.Device.whenReady((device: Phaser.Device) =>
+    return await Promise.resolve(new Promise<Phaser.Device>(resolve => Phaser.Device
+        .whenReady((device: Phaser.Device) => resolve(device)))
+        .then((device) =>
         {
             console.log("Device Ready")
             const isOffline = location.protocol === "file:"
@@ -45,12 +45,16 @@ async function startGame()
             game.state.add(Preloader.key, Preloader)
             game.state.add(GamePlay.key, GamePlay)
 
-            Boot.onCreate.addOnce(() => game.state.start(Preloader.key))
+            Boot.onCreate.addOnce(() =>
+            {
+                game.state.start(Preloader.key);
+                document.querySelector<HTMLDivElement>("#content").style.removeProperty("visibility")
+            })
             Preloader.onCreate.addOnce(() => game.state.start(GamePlay.key))
 
-            resolve(game)
+            return game
         })
-    })
+    )
 }
 
 if (module.hot)
