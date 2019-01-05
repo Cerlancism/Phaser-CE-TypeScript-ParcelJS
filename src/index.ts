@@ -38,7 +38,9 @@ async function startGameAsync()
                 state: Boot
             }
 
-            document.querySelector<HTMLDivElement>("#content").style.setProperty("visibility", "hidden")
+            // Walkaround to prevent canvas from appearing as black from top left corner when starting the game.
+            const container = document.querySelector<HTMLDivElement>("#content")
+            container.style.setProperty("visibility", "hidden")
 
             const game = new Phaser.Game(config)
 
@@ -48,9 +50,13 @@ async function startGameAsync()
             Boot.onCreate.addOnce(() =>
             {
                 game.state.start(Preloader.key);
-                document.querySelector<HTMLDivElement>("#content").style.removeProperty("visibility")
+                container.style.removeProperty("visibility")
             })
-            Preloader.onCreate.addOnce(() => game.state.start(GamePlay.key))
+
+            Preloader.onCreate.addOnce(() =>
+            {
+                game.state.start(GamePlay.key);
+            })
 
             return game
         })

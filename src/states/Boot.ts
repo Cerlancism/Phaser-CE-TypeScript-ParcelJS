@@ -8,7 +8,6 @@ export class Boot extends Phaser.State
     init()
     {
         console.log("State", this.key)
-        this.input.maxPointers = 1
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
         this.scale.setMinMax(320, 240, 1280, 960)
         // Disable generic right click menu.
