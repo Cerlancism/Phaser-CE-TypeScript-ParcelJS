@@ -10,7 +10,14 @@ const { Boot, Preloader, GamePlay } = require<{ [keys in any]: { new(): Phaser.S
 {
     if (!window.GameInstance)
     {
-        window.GameInstance = await startGameAsync()
+        const game = window.GameInstance = await startGameAsync()
+
+        game.state.add(GamePlay.key, GamePlay)
+
+        Preloader.onCreate.addOnce(() =>
+        {
+            game.state.start(GamePlay.key);
+        })
     }
 })()
 
@@ -45,17 +52,11 @@ async function startGameAsync()
             const game = new Phaser.Game(config)
 
             game.state.add(Preloader.key, Preloader)
-            game.state.add(GamePlay.key, GamePlay)
 
             Boot.onCreate.addOnce(() =>
             {
                 game.state.start(Preloader.key);
                 container.style.removeProperty("visibility")
-            })
-
-            Preloader.onCreate.addOnce(() =>
-            {
-                game.state.start(GamePlay.key);
             })
 
             return game
