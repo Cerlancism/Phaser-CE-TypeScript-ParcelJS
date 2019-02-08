@@ -1,10 +1,16 @@
-import 'babel-polyfill'
+import '@babel/polyfill'
 // Using require for global scope mounting because ES import does not guarantee load order
 window.PIXI = require('phaser-ce/build/custom/pixi')
 window.p2 = require('phaser-ce/build/custom/p2')
 window.Phaser = require('phaser-ce/build/custom/phaser-split')
 
 const { Boot, Preloader, GamePlay } = require<{ [keys in any]: { new(): Phaser.State } & { key: string, onCreate: Phaser.Signal } }>("/states")
+
+if (module.hot)
+{
+    module.hot.dispose(destroyGame)
+    module.hot.accept(() => console.log("[HMR]", "Accept"))
+}
 
 !(async () =>
 {
@@ -64,15 +70,9 @@ async function startGameAsync()
     )
 }
 
-if (module.hot)
-{
-    module.hot.dispose(destroyGame)
-    module.hot.accept(() => console.log("[HMR]", "Accept"))
-}
-
 function destroyGame()
 {
     console.log("[HMR] Destroy Game")
     window.GameInstance.destroy()
-    window.GameInstance = null
+    delete window.GameInstance
 }
