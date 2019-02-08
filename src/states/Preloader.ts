@@ -11,7 +11,10 @@ export class Preloader extends Phaser.State
     init()
     {
         console.log("State", this.key)
-        console.log("Asset Key Values", GameAssetValues, "Asset Keys", GameAssetKeys)
+        console.log("Asset Key Values")
+        console.table(GameAssetValues.default)
+        console.log("Asset Keys")
+        console.table(GameAssetKeys)
     }
 
     preload()
@@ -24,12 +27,24 @@ export class Preloader extends Phaser.State
         this.load.setPreloadSprite(this.preloadBar)
 
         this.load.tilemap('level1', undefined, require('/assets/game/level1.json'), Phaser.Tilemap.TILED_JSON)
-        this.load.image(GameAssetKeys["tiles-1"], GameAssetValues["tiles-1"])
-        this.load.spritesheet(GameAssetKeys.dude, GameAssetValues.dude, 32, 48)
-        this.load.spritesheet(GameAssetKeys.droid, GameAssetValues.droid, 32, 32)
-        this.load.image(GameAssetKeys.starSmall, GameAssetValues.starSmall)
-        this.load.image(GameAssetKeys.starBig, GameAssetValues.starBig)
-        this.load.image(GameAssetKeys.background, GameAssetValues.background2)
+
+        const { dude, droid, ...images } = GameAssetValues.default
+        this.load.spritesheet(GameAssetKeys.dude, dude, 32, 48)
+        this.load.spritesheet(GameAssetKeys.droid, droid, 32, 32)
+
+        this.bulkLoad(images, (key, element) => this.load.image(key, element))
+    }
+
+    bulkLoad<T extends string>(items: { [key in T]: string }, loader: (key: string, element: string) => Phaser.Loader)
+    {
+        for (const key in items)
+        {
+            if (items.hasOwnProperty(key))
+            {
+                const element = items[key]
+                loader(key, element)
+            }
+        }
     }
 
     loadUpdate()

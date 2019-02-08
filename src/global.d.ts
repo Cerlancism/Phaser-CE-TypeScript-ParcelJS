@@ -1,5 +1,3 @@
-import 'phaser-ce'
-
 declare global
 {
     const GameInstance: Phaser.Game
@@ -12,3 +10,5 @@ declare global
         GameInstance: typeof GameInstance
     }
 }
+
+export { }

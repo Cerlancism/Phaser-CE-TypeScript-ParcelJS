@@ -1,10 +1,11 @@
-import 'babel-polyfill'
-// Using require for global scope mounting because ES import does not guarantee load order
-window.PIXI = require('phaser-ce/build/custom/pixi')
-window.p2 = require('phaser-ce/build/custom/p2')
-window.Phaser = require('phaser-ce/build/custom/phaser-split')
+import './global'
+import { Boot, Preloader, GamePlay } from '/states'
 
-const { Boot, Preloader, GamePlay } = require<{ [keys in any]: { new(): Phaser.State } & { key: string, onCreate: Phaser.Signal } }>("/states")
+if (module.hot)
+{
+    module.hot.dispose(destroyGame)
+    module.hot.accept(() => console.log("[HMR]", "Accept"))
+}
 
 !(async () =>
 {
@@ -23,9 +24,9 @@ const { Boot, Preloader, GamePlay } = require<{ [keys in any]: { new(): Phaser.S
 
 async function startGameAsync()
 {
-    return await Promise.resolve(new Promise<Phaser.Device>(resolve => Phaser.Device
-        .whenReady((device: Phaser.Device) => resolve(device)))
-        .then((device) =>
+    return new Promise<Phaser.Game>(resolve =>
+    {
+        Phaser.Device.whenReady((device: Phaser.Device) =>
         {
             console.log("Device Ready")
             const isOffline = location.protocol === "file:"
@@ -59,20 +60,14 @@ async function startGameAsync()
                 container.style.removeProperty("visibility")
             })
 
-            return game
+            resolve(game)
         })
-    )
-}
-
-if (module.hot)
-{
-    module.hot.dispose(destroyGame)
-    module.hot.accept(() => console.log("[HMR]", "Accept"))
+    })
 }
 
 function destroyGame()
 {
     console.log("[HMR] Destroy Game")
     window.GameInstance.destroy()
-    window.GameInstance = null
+    delete window.GameInstance
 }
