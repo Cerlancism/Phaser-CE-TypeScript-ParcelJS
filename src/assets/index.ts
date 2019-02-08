@@ -1,13 +1,12 @@
 import * as UI from './ui/*.png'
 import * as Game from './game/*.png'
 
+type StringKeyValuePair<T extends string> = { [key in T]: string } & { default: { [key in T]: string } }
+
 type UIKeyStore =
     | 'preloader_bar'
 
-type UIKeyValuePair =
-    {
-        [key in UIKeyStore]: string
-    }
+type UIKeyValuePair = StringKeyValuePair<UIKeyStore>
 
 type GameAssetKeyStore =
     | 'background'
@@ -18,30 +17,25 @@ type GameAssetKeyStore =
     | 'starBig'
     | 'tiles-1'
 
-type GameAssetKeyValuePair =
-    {
-        [key in GameAssetKeyStore]: string
-    }
+type GameAssetKeyValuePair = StringKeyValuePair<GameAssetKeyStore>
 
-const UIKeyValues = UI as UIKeyValuePair
-const UIKeys = getKeys<UIKeyValuePair>(UI)
-const GameAssetValues = Game as GameAssetKeyValuePair
-const GameAssetKeys = getKeys<GameAssetKeyValuePair>(Game)
+export const UIKeyValues = UI as UIKeyValuePair
+export const UIKeys = getKeys<UIKeyValuePair>(UI)
+export const GameAssetValues = Game as GameAssetKeyValuePair
+export const GameAssetKeys = getKeys<GameAssetKeyValuePair>(Game)
 
-function getKeys<T>(files: Object): T
+function getKeys<T extends StringKeyValuePair<string>>(files: T): T
 {
     let keys: T = {} as T
     for (const key in files)
     {
         if (files.hasOwnProperty(key))
         {
-            keys[key] = key
+            keys[key as string] = key
         }
     }
     return keys
 }
-
-export { UIKeyValues, UIKeys, GameAssetValues, GameAssetKeys }
 
 
 

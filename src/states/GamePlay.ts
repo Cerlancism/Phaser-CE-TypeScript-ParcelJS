@@ -24,7 +24,7 @@ export class GamePlay extends Phaser.State
 
         this.game.stage.backgroundColor = '#000000'
 
-        this.bg = this.game.add.tileSprite(0, 0, 800, 600, GameAssetKeys.background)
+        this.bg = this.game.add.tileSprite(0, 0, 800, 600, GameAssetKeys.background2)
         this.bg.fixedToCamera = true
 
         this.map = this.game.add.tilemap('level1')

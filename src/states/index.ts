@@ -1,3 +1,3 @@
-export { Boot } from '/states/Boot'
-export { Preloader } from '/states/Preloader'
-export { GamePlay } from '/states/GamePlay'
+export * from '/states/Boot'
+export * from '/states/Preloader'
+export * from '/states/GamePlay'
