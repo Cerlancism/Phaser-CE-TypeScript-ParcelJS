@@ -67,7 +67,7 @@ async function startGameAsync()
 
 function destroyGame()
 {
-    console.log("[HMR] Destroy Game")
+    console.log("[HMR]", "Destroy Game")
     window.GameInstance.destroy()
     delete window.GameInstance
 }
