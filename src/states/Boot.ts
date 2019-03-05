@@ -5,6 +5,8 @@ export class Boot extends Phaser.State
     public static key = "Boot"
     public static onCreate = new Phaser.Signal()
 
+    public key = Boot.key
+
     init()
     {
         console.log("State", this.key)

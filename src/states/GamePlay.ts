@@ -3,6 +3,7 @@ import { GameAssetKeys } from "/assets"
 export class GamePlay extends Phaser.State
 {
     public static key = "GamePlay"
+    public key = GamePlay.key
 
     map: Phaser.Tilemap
     layer: Phaser.TilemapLayer

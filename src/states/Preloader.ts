@@ -5,6 +5,8 @@ export class Preloader extends Phaser.State
     public static key = "Preloader"
     public static onCreate = new Phaser.Signal()
 
+    public key = Preloader.key
+
     preloadBar: Phaser.Sprite
     preloadText: Phaser.Text
 
