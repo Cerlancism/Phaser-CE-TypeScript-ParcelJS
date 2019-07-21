@@ -33,7 +33,7 @@ async function startGameAsync()
 
             const config: Phaser.IGameConfig =
             {
-                renderer: device.ie || isOffline && device.chrome ? Phaser.CANVAS : Phaser.AUTO, // IE cannot play videos in WebGL. Chrome will emit CORS errors if using WebGL offline.
+                renderer: device.ie || isOffline ? Phaser.CANVAS : Phaser.AUTO, // IE cannot play videos in WebGL. Browsers may emit CORS errors if using WebGL offline.
                 parent: 'content',
                 width: 800,
                 height: 600,
