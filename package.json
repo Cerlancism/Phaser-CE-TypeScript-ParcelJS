@@ -1,6 +1,6 @@
 {
   "name": "phaser-ce-parceljs",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Phaser CE boilerplate with typescript, babel and parcel bundler.",
   "scripts": {
     "start": "parcel serve src/index.html --out-dir dev/",
