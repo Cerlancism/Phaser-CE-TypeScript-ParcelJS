@@ -1,4 +1,5 @@
-import '@babel/polyfill'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 // Using require for global scope mounting because ES import does not guarantee load order
 window.PIXI = require('phaser-ce/build/custom/pixi')
