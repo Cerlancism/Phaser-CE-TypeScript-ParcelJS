@@ -16,7 +16,7 @@
     - Minification for build output
     - Source mapping (TypeScript breakpoints works with VS Code [Chrome Debugging Extension](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)).
 - Supports modern ECMA syntax as well as typings/intelliSense from [TypeScript](http://www.typescriptlang.org/).
-- Browser compatibility down to Internet Explorer 9 with [Babel](https://babeljs.io/) transformations and polyfills.
+- Browser compatibility down to Internet Explorer 9 with [Babel](https://babeljs.io/) transformations and [core-js](https://github.com/zloirock/core-js) polyfills.
 - The build output is playable offline.
 
 ## Installation
@@ -37,8 +37,6 @@ Open this folder in Visual Studio code and from menu:
 `npm start` To develop (work in `src` folder, creates `dev` folder, open in browser <http://localhost:1234>)
 
 `npm run build` To build (minified and playable offline, creates `build` folder)
-
-`npm run deploy` To deploy (build with no source map, creates `.deploy` folder)
 
 ## Important Note
 Due to bundling and limitation of mounting Phaser to window scope, do not import Phaser as destructured ES modules (becareful as this is suggested by auto import), for example:  

@@ -1,19 +1,32 @@
 import './global'
 import { Boot, Preloader, GamePlay } from '/states'
 
+// Hot module replacement init
 if (module.hot)
 {
     module.hot.dispose(destroyGame)
     module.hot.accept(() => console.log("[HMR]", "Accept"))
 }
 
+// Entry point
 !(async () =>
 {
-    if (!window.GameInstance)
+    if (!window.GameInstance) //
     {
+        // Walkaround to prevent canvas from appearing as black from top left corner when starting the game.
+        const container = document.querySelector<HTMLDivElement>("#content")
+        container.style.setProperty("visibility", "hidden")
+
         const game = window.GameInstance = await startGameAsync()
 
+        game.state.add(Preloader.key, Preloader)
         game.state.add(GamePlay.key, GamePlay)
+
+        Boot.onCreate.addOnce(() =>
+        {
+            game.state.start(Preloader.key);
+            container.style.removeProperty("visibility")
+        })
 
         Preloader.onCreate.addOnce(() =>
         {
@@ -46,25 +59,14 @@ async function startGameAsync()
                 state: Boot
             }
 
-            // Walkaround to prevent canvas from appearing as black from top left corner when starting the game.
-            const container = document.querySelector<HTMLDivElement>("#content")
-            container.style.setProperty("visibility", "hidden")
-
             const game = new Phaser.Game(config)
-
-            game.state.add(Preloader.key, Preloader)
-
-            Boot.onCreate.addOnce(() =>
-            {
-                game.state.start(Preloader.key);
-                container.style.removeProperty("visibility")
-            })
 
             resolve(game)
         })
     })
 }
 
+// Hot module replacement disposal
 function destroyGame()
 {
     console.log("[HMR]", "Destroy Game")
